@@ -22,7 +22,11 @@ public class ProductoServlet extends HttpServlet{
         
         String nombreProducto = req.getParameter("nombreProducto");
         String descrpicionProducto = req.getParameter("descripcionProducto");
+<<<<<<< HEAD
         String marcaProducto = req.getParameter("marcaProducto");
+=======
+        String marcaProducto = req.getParameter("MarcaProducto");
+>>>>>>> b6d068e227d2a875ed920d27b2b36ca117fb16c3
         double precioProducto = Double.parseDouble(req.getParameter("precioProducto"));
         
         producto.add(nombreProducto);
