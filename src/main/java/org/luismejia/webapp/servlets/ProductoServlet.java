@@ -9,11 +9,31 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import org.luismejia.webapp.model.Producto;
+import org.luismejia.webapp.service.ProductoService;
 
-@WebServlet("/producto-servlet/")
+@WebServlet("/producto-servlet")
 @MultipartConfig
 public class ProductoServlet extends HttpServlet{
 
+    private ProductoService ps;
+    
+    @Override
+    public void init() throws ServletException{
+        super.init();
+        this.ps = new ProductoService();
+    }
+        
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Producto> productos = ps.listarProductos();
+        req.setAttribute("productos", productos);
+        req.getRequestDispatcher("/listar-productos/listar-producto.jsp").forward(req, resp);
+    }
+
+    
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
@@ -22,11 +42,7 @@ public class ProductoServlet extends HttpServlet{
         
         String nombreProducto = req.getParameter("nombreProducto");
         String descrpicionProducto = req.getParameter("descripcionProducto");
-<<<<<<< HEAD
         String marcaProducto = req.getParameter("marcaProducto");
-=======
-        String marcaProducto = req.getParameter("MarcaProducto");
->>>>>>> b6d068e227d2a875ed920d27b2b36ca117fb16c3
         double precioProducto = Double.parseDouble(req.getParameter("precioProducto"));
         
         producto.add(nombreProducto);
@@ -38,5 +54,6 @@ public class ProductoServlet extends HttpServlet{
         getServletContext().getRequestDispatcher("/formulario-productos/formulario-productos.jsp").forward(req, resp);
         
     }
+    
     
 }
