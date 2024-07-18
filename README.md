@@ -1,2 +1,3 @@
-# Proyecto-utilizando-Servlets-y-JSP
-Proyecto en Netbeans con apache tomcat 
+# Proyecto hecho en html 
+Listar productos de una base de datos
+
